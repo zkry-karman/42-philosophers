@@ -16,6 +16,11 @@ void    ft_makenode(t_philo *philosophers, int i)
 {
     t_philo *newnode;
     t_philo *lastnode;
+
+    newnode = malloc(sizeof(t_philo));
+    if (!newnode)
+        return ;
+    newnode->
 }
 
 t_philo *a_table(int ac, char **av)
