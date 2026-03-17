@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 14:02:08 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/17 13:48:06 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/17 16:44:43 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,26 @@ t_data  initialize_data(char **args)
 {
     t_data  *data;
     
+    data = malloc(sizeof(t_data));
+    if (!data)
+        return (NULL);
+    data->number_of_philosophers = ft_atoi(args[1]);
+    data->time_to_die = ft_atoi(args[2]);
+    data->time_to_eat = ft_atoi(args[3]);
+    data->time_to_sleep = ft_atoi(args[4]);
+    if (args[5])
+        data->number_of_times_each_philosopher_must_eat = ft_atoi(args[5]);
+    else
+        date->number_of_times_each_philosopher_must_eat = -1;
+    
+    //need to finish setting up data struct
+    
+    return (data);
 }
 
 int valid_arguments(int ac, char **av)
 {
+    //Use ATOI here !!!
     if (ac < 5 || ac > 6)
         return(printf("%s\n", "Must have either 4 or 5 arguments"), 0);
     if (av[1] < 1)

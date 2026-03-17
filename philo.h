@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/03/17 13:47:15 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/17 16:30:10 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
+#include <sys/time.h>
 
 typedef struct s_data
 {
@@ -30,6 +32,13 @@ typedef struct s_data
     pthread_mutex_t write_lock;
     pthread_mutex_t dead_lock;
 }   t_data;
+
+typedef struct s_philo
+{
+    int id;
+    int last_meal_time;
+    int meals_eaten;
+}   t_philo;
 
 int main(int ac, char **av)
 
