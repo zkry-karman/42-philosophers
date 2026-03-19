@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/03/17 16:30:10 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/19 15:22:13 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef struct s_philo
     int id;
     int last_meal_time;
     int meals_eaten;
+    t_data  *data;
 }   t_philo;
+
 
 int main(int ac, char **av)
 
