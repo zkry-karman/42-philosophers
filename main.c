@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 14:02:08 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/21 17:10:52 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/03/21 21:46:46 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int main(int ac, char **av)
         return (1);
     data = initialize_data(av);
     philos = initialize_philos(data);
-    start_simulation(philos);
+    start_simulation(philos, data);
 }
