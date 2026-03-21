@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/03/19 15:22:13 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/21 15:37:18 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,23 @@ typedef struct s_data
 
     long long   start_time;
     int is_dead;
+    pthread_mutex_t *forks;
     pthread_mutex_t write_lock;
     pthread_mutex_t dead_lock;
 }   t_data;
 
 typedef struct s_philo
 {
+    pthread_t   thread;
     int id;
     int last_meal_time;
     int meals_eaten;
+    pthread_mutex_t *l_fork;
+    pthread_mutex_t *r_fork;
     t_data  *data;
 }   t_philo;
 
-
-int main(int ac, char **av)
+t_data  *initialize_data(char **args);
+t_philo *initialize_philos(t_data *data);
 
 #endif
