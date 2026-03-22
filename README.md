@@ -5,3 +5,6 @@
 # Instructions
 
 # Resources
+
+https://www.geeksforgeeks.org/c/thread-functions-in-c-c/
+https://www.geeksforgeeks.org/linux-unix/mutex-lock-for-linux-thread-synchronization/
