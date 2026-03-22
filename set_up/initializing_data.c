@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializing_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:13:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/21 15:37:18 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/03/22 21:29:58 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_data  *initialize_data(char **args)
         data->number_of_times_each_philosopher_must_eat = ft_atoi(args[5]);
     else
         data->number_of_times_each_philosopher_must_eat = -1;
+    data->is_dead = 0;
     
     //need to finish setting up data struct
     if (!init_forks(data))

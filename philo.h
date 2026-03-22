@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/03/21 15:37:18 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/03/22 21:28:28 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ typedef struct s_philo
 
 t_data  *initialize_data(char **args);
 t_philo *initialize_philos(t_data *data);
+void    start_simulation(t_philo *philos, t_data *data);
+
 
 #endif

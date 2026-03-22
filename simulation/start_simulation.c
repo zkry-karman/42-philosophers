@@ -6,11 +6,35 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/21 21:50:55 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/22 21:31:51 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
+
+void    *philosopher_routine(void *arg)
+{
+    t_philo *philo;
+
+    philp = (t_philo *)arg;
+
+    if (philos->data->number_of_philosophers == 1)
+        //Need to create one philo case
+        return (one_philo(philo));
+
+    while (1)
+    {
+        if (philo->data.is_dead)
+            break ;
+        //need to create is_eating
+        is_eating(philo);
+        //Need to create is_sleeping
+        is_sleeping(philo);
+        //need to create is_thinking
+        is_thinking(philo);
+    }
+    return (NULL);
+}
 
 void    start_simulation(t_philo *philos, t_data *data)
 {
