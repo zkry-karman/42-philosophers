@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/22 21:31:51 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/03/23 16:18:07 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void    start_simulation(t_philo *philos, t_data *data)
 {
     int i;
     
+    data->start_time = get_time();
     i = 0;
     while (i < data->number_of_philosophers)
     {
