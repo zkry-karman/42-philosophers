@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/03/22 21:28:28 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/04/27 16:02:16 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef struct s_philo
 t_data  *initialize_data(char **args);
 t_philo *initialize_philos(t_data *data);
 void    start_simulation(t_philo *philos, t_data *data);
-
+void    is_eating(t_philo *philo);
+void    is_sleeping(t_philo *philo);
+void    is_thinking(t_philo *philo);
+void    one_philo(t_philo *philo);
+int	ft_atoi(const char *nptr);
+void    ft_usleep(long long time_in_ms);
+long long   get_time(void);
+void    end_simulation(t_philo *philos, t_data *data);
 
 #endif
