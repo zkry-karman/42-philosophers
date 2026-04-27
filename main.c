@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 14:02:08 by zkarman           #+#    #+#             */
-/*   Updated: 2026/03/21 21:46:46 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/04/27 15:50:23 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ int main(int ac, char **av)
         return (1);
     data = initialize_data(av);
     philos = initialize_philos(data);
-    start_simulation(philos, data);
+    if (!data || !philos)
+        end_simulation(philos, data);
+    else
+        start_simulation(philos, data);
+    return (0);
 }
