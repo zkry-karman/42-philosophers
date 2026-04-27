@@ -1,11 +1,11 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 
 SRCS = main.c	\
 	   helper_functions.c \
-	   set_up/intializing_data.c \
-	   set_up/intializing_philo.c \
+	   set_up/initializing_data.c \
+	   set_up/initializing_philo.c \
 	   simulation/eating.c \
 	   simulation/end_simulation.c \
 	   simulation/one_philo.c \
@@ -18,12 +18,15 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all

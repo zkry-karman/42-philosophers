@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/04/27 15:41:22 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/04/27 17:05:06 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int     are_all_full(t_philo *philo)
     }
     if (all_full)
     {
-        pthread_mutex_lock(philo[0].data->write_lock);
+        pthread_mutex_lock(&philo[0].data->write_lock);
         printf("All philosophers have eaten the necessary amount of times\n");
-        pthread_mutex_unlock(philo[0].data->write_lock);
+        pthread_mutex_unlock(&philo[0].data->write_lock);
         philo[0].data->is_dead = 1;
         return (1);
     }
@@ -54,9 +54,9 @@ void    *check_for_deaths(void *arg)
         {
             if (get_time() - philo[i].last_meal_time >= philo[0].data->time_to_die)
             {
-                pthread_mutex_lock(philo[0].data->write_lock);
+                pthread_mutex_lock(&philo[0].data->write_lock);
                 printf("%lld %d died\n", get_time() - philo[i].data->start_time, philo[i].id);
-                pthread_mutex_unlock(philo[0].data->write_lock);
+                pthread_mutex_unlock(&philo[0].data->write_lock);
                 philo[0].data->is_dead = 1;
                 return (NULL);
             }
@@ -74,14 +74,14 @@ void    *philosopher_routine(void *arg)
     t_philo *philo;
 
     philo = (t_philo *)arg;
-    if (philos->data->number_of_philosophers == 1)
+    if (philo->data->number_of_philosophers == 1)
     {
         one_philo(philo);
         return (NULL);
     }
     while (1)
     {
-        if (philo->data.is_dead)
+        if (philo->data->is_dead)
             break ;
         is_eating(philo);
         is_sleeping(philo);
@@ -110,5 +110,5 @@ void    start_simulation(t_philo *philos, t_data *data)
         i++;
     }
     pthread_join(death_check, NULL);
-    end_simulations(philos, data);
+    end_simulation(philos, data);
 }

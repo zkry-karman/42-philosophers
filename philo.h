@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/04/27 16:02:16 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/04/27 17:17:40 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 {
     pthread_t   thread;
     int id;
-    int last_meal_time;
+    long long last_meal_time;
     int meals_eaten;
     pthread_mutex_t *l_fork;
     pthread_mutex_t *r_fork;
