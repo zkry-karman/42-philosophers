@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/05/01 20:57:12 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 22:32:42 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ long long   get_time(void);
 void    end_simulation(t_philo *philos, t_data *data);
 int     philo_died(t_philo *philo);
 void	print_timestamp(t_philo *philo, char *message);
+void    threading(t_philo *philos, t_data *data);
+void    *philosopher_routine(void *arg);
+void    *check_for_deaths(void *arg);
 
 #endif

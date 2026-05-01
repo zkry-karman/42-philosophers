@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/05/01 21:55:38 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 22:30:42 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void    *philosopher_routine(void *arg)
 
 void    start_simulation(t_philo *philos, t_data *data)
 {
-    pthread_t   death_check;
     int i;
     long long   current_time;
     
@@ -115,19 +114,6 @@ void    start_simulation(t_philo *philos, t_data *data)
         philos[i].last_meal_time = current_time;
         i++;
     }
-    i = 0;
-    while (i < data->number_of_philosophers)
-    {
-        pthread_create(&philos[i].thread, NULL, &philosopher_routine, &philos[i]);
-        i++;
-    }
-    pthread_create(&death_check, NULL, &check_for_deaths, philos);
-    i = 0;
-    while (i < data->number_of_philosophers)
-    {
-        pthread_join(philos[i].thread, NULL);
-        i++;
-    }
-    pthread_join(death_check, NULL);
+    threading(philos, data);
     end_simulation(philos, data);
 }

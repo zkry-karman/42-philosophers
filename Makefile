@@ -11,7 +11,8 @@ SRCS = main.c	\
 	   simulation/one_philo.c \
 	   simulation/sleeping.c \
 	   simulation/start_simulation.c \
-	   simulation/thinking.c
+	   simulation/thinking.c \
+	   simulation/threading.c \
 
 OBJS = $(SRCS:.c=.o)
 
