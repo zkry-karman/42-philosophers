@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 21:13:57 by karmanz           #+#    #+#             */
-/*   Updated: 2026/04/27 17:13:51 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 21:55:16 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void    is_thinking(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->data->write_lock);
-    printf("%lld %d is thinking\n", get_time() - philo->data->start_time, philo->id);
-    pthread_mutex_unlock(&philo->data->write_lock);
+    if (philo_died(philo))
+        return ;
+    print_timestamp(philo, "is thinking");
+    if (philo->data->number_of_philosophers %2 != 0)
+        ft_usleep(philo->data->time_to_eat);
 }

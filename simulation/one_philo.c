@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 21:14:54 by karmanz           #+#    #+#             */
-/*   Updated: 2026/04/27 17:03:06 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 22:17:57 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 void    one_philo(t_philo *philo)
 {
-    while (1)
-    {
-        if(philo->data->is_dead)
-            return ;
-        if(!pthread_mutex_lock(philo->r_fork))
-        {
-            pthread_mutex_lock(&philo->data->write_lock);
-            printf("%lld %d has taken a fork\n", get_time() - philo->data->start_time, philo->id);
-            pthread_mutex_unlock(&philo->data->write_lock);
-        }
-    }
+    pthread_mutex_lock(philo->l_fork);
+    print_timestamp(philo, "has taken a fork");
+    while (!philo_died(philo))
+        usleep(1000);
+    pthread_mutex_unlock(philo->l_fork);
 }

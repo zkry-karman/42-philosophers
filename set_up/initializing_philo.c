@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:15:19 by zkarman           #+#    #+#             */
-/*   Updated: 2026/04/27 16:09:11 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 21:30:50 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_philo *initialize_philos(t_data *data)
     while (i < data->number_of_philosophers)
     {
         philos[i].id = i + 1;
-        philos[i].last_meal_time = get_time();
         philos[i].meals_eaten = 0;
         philos[i].data = data;
         philos[i].l_fork = &data->forks[i];

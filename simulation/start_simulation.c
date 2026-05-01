@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/04/27 17:05:06 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 21:55:38 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ int     are_all_full(t_philo *philo)
     }
     if (all_full)
     {
-        pthread_mutex_lock(&philo[0].data->write_lock);
-        printf("All philosophers have eaten the necessary amount of times\n");
-        pthread_mutex_unlock(&philo[0].data->write_lock);
+        pthread_mutex_lock(&philo[0].data->dead_lock);
         philo[0].data->is_dead = 1;
+        pthread_mutex_unlock(&philo[0].data->dead_lock);
         return (1);
     }
     return (0);
@@ -52,21 +51,33 @@ void    *check_for_deaths(void *arg)
         i = 0;
         while (i < philo[0].data->number_of_philosophers)
         {
+            pthread_mutex_lock(&philo[0].data->dead_lock);
             if (get_time() - philo[i].last_meal_time >= philo[0].data->time_to_die)
             {
+                philo[0].data->is_dead = 1;
                 pthread_mutex_lock(&philo[0].data->write_lock);
                 printf("%lld %d died\n", get_time() - philo[i].data->start_time, philo[i].id);
                 pthread_mutex_unlock(&philo[0].data->write_lock);
-                philo[0].data->is_dead = 1;
+                pthread_mutex_unlock(&philo[0].data->dead_lock);
                 return (NULL);
             }
+            pthread_mutex_unlock(&philo[0].data->dead_lock);
             i++;
         }
         if (are_all_full(philo))
             return (NULL);
-        usleep(1000);
+        usleep(100);
     }
     return (NULL);
+}
+
+int     philo_died(t_philo *philo)
+{
+    int     death;
+    pthread_mutex_lock(&philo->data->dead_lock);
+    death = philo->data->is_dead;
+    pthread_mutex_unlock(&philo->data->dead_lock);
+    return (death);
 }
 
 void    *philosopher_routine(void *arg)
@@ -79,10 +90,10 @@ void    *philosopher_routine(void *arg)
         one_philo(philo);
         return (NULL);
     }
-    while (1)
+    if (philo->id % 2 == 0)
+        ft_usleep(philo->data->time_to_eat / 2);
+    while (!philo_died(philo))
     {
-        if (philo->data->is_dead)
-            break ;
         is_eating(philo);
         is_sleeping(philo);
         is_thinking(philo);
@@ -94,8 +105,16 @@ void    start_simulation(t_philo *philos, t_data *data)
 {
     pthread_t   death_check;
     int i;
+    long long   current_time;
     
-    data->start_time = get_time();
+    current_time = get_time();
+    data->start_time = current_time;
+    i = 0;
+    while (i < data->number_of_philosophers)
+    {
+        philos[i].last_meal_time = current_time;
+        i++;
+    }
     i = 0;
     while (i < data->number_of_philosophers)
     {

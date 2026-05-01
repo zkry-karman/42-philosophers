@@ -6,11 +6,21 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 23:02:37 by karmanz           #+#    #+#             */
-/*   Updated: 2026/04/27 14:35:44 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 20:54:27 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	print_timestamp(t_philo *philo, char *message)
+{
+	pthread_mutex_lock(&philo->data->write_lock);
+	pthread_mutex_lock(&philo->data->dead_lock);
+	if (!philo->data->is_dead)
+		printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id, message);
+	pthread_mutex_unlock(&philo->data->dead_lock);
+	pthread_mutex_unlock(&philo->data->write_lock);
+}
 
 long long   get_time(void)
 {

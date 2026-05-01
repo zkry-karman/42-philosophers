@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/04/27 17:17:40 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/01 20:57:12 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int	ft_atoi(const char *nptr);
 void    ft_usleep(long long time_in_ms);
 long long   get_time(void);
 void    end_simulation(t_philo *philos, t_data *data);
+int     philo_died(t_philo *philo);
+void	print_timestamp(t_philo *philo, char *message);
 
 #endif
