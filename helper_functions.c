@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 23:02:37 by karmanz           #+#    #+#             */
-/*   Updated: 2026/05/06 15:56:42 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 16:20:45 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_deathstamp(t_philo *philo)
 	pthread_mutex_lock(&philo[0].data->write_lock);
 	printf("%lld %d died\n", get_time() - philo->data->start_time, philo->id);
 	pthread_mutex_unlock(&philo[0].data->write_lock);
-	pthread_mutex_unlock(&philo[0].data->dead_lock);	
+	pthread_mutex_unlock(&philo[0].data->dead_lock);
 }
 
 void	print_timestamp(t_philo *philo, char *message)
@@ -26,7 +26,11 @@ void	print_timestamp(t_philo *philo, char *message)
 	pthread_mutex_lock(&philo->data->write_lock);
 	pthread_mutex_lock(&philo->data->dead_lock);
 	if (!philo->data->is_dead)
-		printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id, message);
+	{
+		printf("%lld", get_time() - philo->data->start_time);
+		printf(" %d", philo->id);
+		printf(" %s\n", message);
+	}
 	pthread_mutex_unlock(&philo->data->dead_lock);
 	pthread_mutex_unlock(&philo->data->write_lock);
 }

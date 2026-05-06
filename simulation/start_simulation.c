@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/05/06 16:01:59 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 16:17:52 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	philo_died(t_philo *philo)
 	return (death);
 }
 
-void	*philosopher_routine(void *arg)
+void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
 
@@ -100,8 +100,8 @@ void	*philosopher_routine(void *arg)
 
 void	start_simulation(t_philo *philos, t_data *data)
 {
-	int		i;
-	long long	 current_time;
+	int			i;
+	long long	current_time;
 
 	current_time = get_time();
 	data->start_time = current_time;

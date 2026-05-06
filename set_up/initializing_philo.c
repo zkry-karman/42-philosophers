@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:15:19 by zkarman           #+#    #+#             */
-/*   Updated: 2026/05/06 15:33:17 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 16:06:46 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_philo	*initialize_philos(t_data *data)
 {
 	t_philo	*philos;
-	int	i;
+	int		i;
 
 	philos = malloc(sizeof(t_philo) * data->number_of_philo);
 	if (!philos)
