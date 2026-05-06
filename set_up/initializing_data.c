@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:13:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/05/06 15:33:04 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:48:48 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ t_data	*initialize_data(char **args)
 	data->time_to_eat = ft_atoi(args[3]);
 	data->time_to_sleep = ft_atoi(args[4]);
 	if (args[5])
-		data->number_of_times_each_philosopher_must_eat = ft_atoi(args[5]);
+		data->num_times_to_eat = ft_atoi(args[5]);
 	else
-		data->number_of_times_each_philosopher_must_eat = -1;
+		data->num_times_to_eat = -1;
 	data->is_dead = 0;
 	if (!init_forks(data))
 		return (NULL);

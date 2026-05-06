@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 23:02:37 by karmanz           #+#    #+#             */
-/*   Updated: 2026/05/06 15:19:25 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:56:42 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	print_deathstamp(t_philo *philo)
+{
+	philo->data->is_dead = 1;
+	pthread_mutex_lock(&philo[0].data->write_lock);
+	printf("%lld %d died\n", get_time() - philo->data->start_time, philo->id);
+	pthread_mutex_unlock(&philo[0].data->write_lock);
+	pthread_mutex_unlock(&philo[0].data->dead_lock);	
+}
 
 void	print_timestamp(t_philo *philo, char *message)
 {

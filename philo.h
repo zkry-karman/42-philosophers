@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 14:04:50 by karmanz           #+#    #+#             */
-/*   Updated: 2026/05/06 15:32:32 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:55:52 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int			time_to_die;
 	int			time_to_eat;
 	int			time_to_sleep;
-	int			number_of_times_each_philosopher_must_eat;
+	int			num_times_to_eat;
 	long long		start_time;
 	int			is_dead;
 	pthread_mutex_t		*forks;
@@ -37,7 +37,7 @@ typedef struct s_philo
 {
 	pthread_t	thread;
 	int	id;
-	long long	last_meal_time;
+	long long	last_meal;
 	int	meals_eaten;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
@@ -60,5 +60,6 @@ void		print_timestamp(t_philo *philo, char *message);
 void		threading(t_philo *philos, t_data *data);
 void		*philosopher_routine(void *arg);
 void		*check_for_deaths(void *arg);
+void	    print_deathstamp(t_philo *philo);
 
 #endif
