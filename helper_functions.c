@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 23:02:37 by karmanz           #+#    #+#             */
-/*   Updated: 2026/05/01 20:54:27 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:19:25 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	print_timestamp(t_philo *philo, char *message)
 	pthread_mutex_unlock(&philo->data->write_lock);
 }
 
-long long   get_time(void)
+long long	get_time(void)
 {
-    struct timeval  tv;
+	struct timeval	tv;
 
-    if (gettimeofday(&tv, NULL))
-        return (0);
-    return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void    ft_usleep(long long time_in_ms)
+void	ft_usleep(long long time_in_ms)
 {
-    long long   start;
-    
-    start = get_time();
-    while((get_time() - start) < time_in_ms)
-        usleep(500);
+	long long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_in_ms)
+		usleep(500);
 }
 
 int	ft_atoi(const char *nptr)

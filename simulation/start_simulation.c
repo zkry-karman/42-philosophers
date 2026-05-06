@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:52:04 by zkarman           #+#    #+#             */
-/*   Updated: 2026/05/01 22:30:42 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:33:40 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int     are_all_full(t_philo *philo)
         return (0);
     j = 0;
     all_full = 1;
-    while (j < philo[0].data->number_of_philosophers)
+    while (j < philo[0].data->number_of_philo)
     {
         if (philo[j].meals_eaten < philo[0].data->number_of_times_each_philosopher_must_eat)
         {
@@ -49,7 +49,7 @@ void    *check_for_deaths(void *arg)
     while (1)
     {
         i = 0;
-        while (i < philo[0].data->number_of_philosophers)
+        while (i < philo[0].data->number_of_philo)
         {
             pthread_mutex_lock(&philo[0].data->dead_lock);
             if (get_time() - philo[i].last_meal_time >= philo[0].data->time_to_die)
@@ -85,7 +85,7 @@ void    *philosopher_routine(void *arg)
     t_philo *philo;
 
     philo = (t_philo *)arg;
-    if (philo->data->number_of_philosophers == 1)
+    if (philo->data->number_of_philo == 1)
     {
         one_philo(philo);
         return (NULL);
@@ -109,7 +109,7 @@ void    start_simulation(t_philo *philos, t_data *data)
     current_time = get_time();
     data->start_time = current_time;
     i = 0;
-    while (i < data->number_of_philosophers)
+    while (i < data->number_of_philo)
     {
         philos[i].last_meal_time = current_time;
         i++;
